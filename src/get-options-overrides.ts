@@ -44,11 +44,8 @@ function expandIncludeWithDirs(include: string | string[], dirs: string[])
 	const newDirs: string[] = [];
 
 	dirs.forEach(root => {
-		if (include instanceof Array)
-			include.forEach(x => newDirs.push(normalize(path.join(root, x))));
-		else
-			newDirs.push(normalize(path.join(root, include)));
-	});
+        throw new Error("STUB");
+    });
 	return newDirs;
 }
 
@@ -65,11 +62,11 @@ export function createFilter(context: RollupContext, pluginOptions: IOptions, pa
 
 	if (parsedConfig.projectReferences)
 	{
-		included = expandIncludeWithDirs(included, parsedConfig.projectReferences.map((x) => x.path)).concat(included);
-		excluded = expandIncludeWithDirs(excluded, parsedConfig.projectReferences.map((x) => x.path)).concat(excluded);
+		included = expandIncludeWithDirs(included, parsedConfig.projectReferences.map((x) => { throw new Error("STUB"); })).concat(included);
+		excluded = expandIncludeWithDirs(excluded, parsedConfig.projectReferences.map((x) => { throw new Error("STUB"); })).concat(excluded);
 	}
 
-	context.debug(() => `included:\n${JSON.stringify(included, undefined, 4)}`);
-	context.debug(() => `excluded:\n${JSON.stringify(excluded, undefined, 4)}`);
+	context.debug(() => { throw new Error("STUB"); });
+	context.debug(() => { throw new Error("STUB"); });
 	return createRollupFilter(included, excluded, { resolve: parsedConfig.options.rootDir });
 }

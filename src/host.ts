@@ -18,9 +18,8 @@ export class LanguageServiceHost implements tsTypes.LanguageServiceHost
 
 	public reset()
 	{
-		this.snapshots = {};
-		this.versions = {};
-	}
+        throw new Error("STUB");
+    }
 
 	public setLanguageService(service: tsTypes.LanguageService)
 	{
@@ -52,46 +51,23 @@ export class LanguageServiceHost implements tsTypes.LanguageServiceHost
 		return undefined;
 	}
 
-	public getScriptFileNames = () => Array.from(this.fileNames.values());
+	public getScriptFileNames = () => { throw new Error("STUB"); };
 
 	public getScriptVersion(fileName: string)
 	{
-		fileName = normalize(fileName);
-
-		return (this.versions[fileName] || 0).toString();
-	}
+        throw new Error("STUB");
+    }
 
 	public getCustomTransformers(): tsTypes.CustomTransformers | undefined
 	{
-		if (this.service === undefined || this.transformers === undefined || this.transformers.length === 0)
-			return undefined;
+        throw new Error("STUB");
+    }
 
-		const transformer: tsTypes.CustomTransformers =
-		{
-			before: [],
-			after: [],
-			afterDeclarations: [],
-		};
+	public getCompilationSettings = () => { throw new Error("STUB"); };
+	public getTypeRootsVersion = () => { throw new Error("STUB"); };
+	public getCurrentDirectory = () => { throw new Error("STUB"); };
 
-		for (const creator of this.transformers)
-		{
-			const factory = creator(this.service);
-			if (factory.before)
-				transformer.before = transformer.before!.concat(factory.before);
-			if (factory.after)
-				transformer.after = transformer.after!.concat(factory.after);
-			if (factory.afterDeclarations)
-				transformer.afterDeclarations = transformer.afterDeclarations!.concat(factory.afterDeclarations);
-		}
-
-		return transformer;
-	}
-
-	public getCompilationSettings = () => this.parsedConfig.options;
-	public getTypeRootsVersion = () => 0;
-	public getCurrentDirectory = () => this.cwd;
-
-	public useCaseSensitiveFileNames = () => tsModule.sys.useCaseSensitiveFileNames;
+	public useCaseSensitiveFileNames = () => { throw new Error("STUB"); };
 	public getDefaultLibFileName = tsModule.getDefaultLibFilePath; // confusing naming: https://github.com/microsoft/TypeScript/issues/35318
 
 	public readDirectory = tsModule.sys.readDirectory;

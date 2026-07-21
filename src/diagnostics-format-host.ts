@@ -7,11 +7,11 @@ export class FormatHost implements tsTypes.FormatDiagnosticsHost
 {
 	public getCurrentDirectory(): string
 	{
-		return tsModule.sys.getCurrentDirectory();
-	}
+        throw new Error("STUB");
+    }
 
 	public getCanonicalFileName = path.normalize;
-	public getNewLine = () => tsModule.sys.newLine;
+	public getNewLine = () => { throw new Error("STUB"); };
 }
 
 export const formatHost = new FormatHost();

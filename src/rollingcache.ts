@@ -17,10 +17,8 @@ export class RollingCache<DataType> implements ICache<DataType>
 	/** @param cacheRoot: root folder for the cache */
 	constructor(private cacheRoot: string)
 	{
-		this.oldCacheRoot = `${this.cacheRoot}/cache`;
-		this.newCacheRoot = `${this.cacheRoot}/cache_`;
-		emptyDirSync(this.newCacheRoot);
-	}
+        throw new Error("STUB");
+    }
 
 	/** @returns true if name exists in either old cache or new cache */
 	public exists(name: string): boolean
@@ -42,14 +40,8 @@ export class RollingCache<DataType> implements ICache<DataType>
 	/** @returns true if old cache contains all names and nothing more */
 	public match(names: string[]): boolean
 	{
-		if (this.rolled)
-			return false;
-
-		if (!existsSync(this.oldCacheRoot))
-			return names.length === 0; // empty folder matches
-
-		return _.isEqual(readdirSync(this.oldCacheRoot).sort(), names.sort());
-	}
+        throw new Error("STUB");
+    }
 
 	/** @returns data for name, must exist in either old cache or new cache */
 	public read(name: string): DataType | null | undefined
@@ -73,11 +65,8 @@ export class RollingCache<DataType> implements ICache<DataType>
 
 	public touch(name: string)
 	{
-		if (this.rolled)
-			return;
-
-		ensureFileSync(`${this.newCacheRoot}/${name}`);
-	}
+        throw new Error("STUB");
+    }
 
 	/** clears old cache and moves new in its place */
 	public roll()
